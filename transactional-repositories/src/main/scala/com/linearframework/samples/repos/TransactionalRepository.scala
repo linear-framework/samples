@@ -15,6 +15,9 @@ trait TransactionalRepository {
   /**
    * Runs SQL as part of larger transaction, if appropriate.
    * All database access should be proctored through this method.
+   *
+   * By accessing the database through this method, instead of directly using the database object,
+   * multiple repository methods can be chained together in the same database transaction.
    */
   protected final def db(implicit tx: Committable): SqlRunner = {
     if (tx == null) {

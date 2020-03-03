@@ -5,11 +5,19 @@ import com.linearframework.sql.Database
 import org.apache.commons.dbcp2.BasicDataSource
 
 object App {
+
+  ///////////////////////////////////////
+  // Database connection properties
+  ///////////////////////////////////////
   private val DB_URL = "jdbc:h2:mem:linear_transaction_samples;DB_CLOSE_DELAY=-1"
   private val DB_DRIVER = "org.h2.Driver"
   private val DB_USERNAME = ""
   private val DB_PASSWORD = ""
 
+  
+  ///////////////////////////////////////
+  // Linear Database object
+  ///////////////////////////////////////
   private lazy val database: Database = {
     val ds = new BasicDataSource
     ds.setUrl(DB_URL)
@@ -18,16 +26,26 @@ object App {
     ds.setPassword(DB_PASSWORD)
 
     val db = Database(ds)
-
     db.sql("CREATE TABLE persons(person_id IDENTITY, first_name VARCHAR, last_name VARCHAR)").execute()
     db.sql("CREATE TABLE pets(pet_id IDENTITY, name VARCHAR, breed VARCHAR, owner_person_id BIGINT)").execute()
-
     db
   }
 
+
+  ///////////////////////////////////////
+  // Repositories
+  ///////////////////////////////////////
   private lazy val personRepository = new PersonRepository(database)
   private lazy val petRepository = new PetRepository(database)
 
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Main Application
+  //  - First, repository methods are called from within the context of a transaction
+  //    When the transaction is rolled back, the data is not persisted to the database
+  //  - Then, the same repository methods are called outside the context of a transaction
+  //    The data remains available in the database
+  ////////////////////////////////////////////////////////////////////////////////////////
   def main(args: Array[String]): Unit = {
     var person: Option[(String, String)] = None
     var pets: List[(String, String)] = List()
