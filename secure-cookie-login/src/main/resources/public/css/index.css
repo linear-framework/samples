@@ -1,0 +1,59 @@
+.login {
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: transparent;
+}
+
+.login .card-header {
+  border-color: transparent;
+  background: none;
+  margin-bottom: 1rem;
+}
+
+.login .card-header .brand {
+  font-family: 'Lora', serif;
+  font-size: 4rem;
+  color: #354d62;
+  border-color: transparent;
+  background: none;
+  padding-left: 1rem;
+}
+
+.login .card-header img {
+  max-width: 6rem;
+  margin-top: -2.25rem;
+}
+
+.login .card-body {
+  background: #f4f4f4;
+}
+
+.login .card-footer {
+  background: #f4f4f4;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 1.25rem;
+}
+
+.login .card-footer .btn {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #354d62;
+  border-color: #444455;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:visited .btn-primary.active {
+  background-color: #43617b;
+  border-color: #354d62;
+}
+
+a {
+  color: #43617b;
+}
+
+.login a {
+  font-size: 0.85rem;
+}

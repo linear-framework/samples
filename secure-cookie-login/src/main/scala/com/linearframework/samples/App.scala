@@ -27,10 +27,11 @@ object App {
   /** Web Server */
   private lazy val server = {
     // enable hot-reload of static files when running in a development environment
-    val (staticFileType, staticFilePath) = {
-      if (ProjectUtil.isRunningFromJar) CLASSPATH -> "public/"
-      else EXTERNAL -> s"${ProjectUtil.getProjectDirectory.get}/src/main/resources/public/"
-    }
+    val (staticFileType, staticFilePath) =
+      ProjectUtil.getProjectDirectory match {
+        case Some(dir) => EXTERNAL -> s"$dir/src/main/resources/public/"
+        case None => CLASSPATH -> "public/"
+      }
 
     Server
       .autoScan("com.linearframework.samples")
