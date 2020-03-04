@@ -1,7 +1,7 @@
 package com.linearframework.samples.controller
 
-import com.linearframework.samples.model.{LoginForm, NewUserForm}
-import com.linearframework.samples.service.{LoginService, UserService}
+import com.linearframework.samples.model.LoginForm
+import com.linearframework.samples.service.LoginService
 import com.linearframework.web._
 import scala.util.control.NonFatal
 

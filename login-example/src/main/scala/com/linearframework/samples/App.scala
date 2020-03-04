@@ -1,10 +1,10 @@
 package com.linearframework.samples
 
+import com.linearframework.config._
 import com.linearframework.i18n.{ResourceBundle, ResourceUtils}
 import com.linearframework.samples.config.{Persistence, Resources}
-import com.linearframework.web._
-import com.linearframework.config._
 import com.linearframework.sql.Database
+import com.linearframework.web._
 
 object App {
   private lazy val config = Configuration.load()
