@@ -1,6 +1,6 @@
 package com.linearframework.samples
 
-import com.linearframework.i18n.ResourceBundle
+import com.linearframework.i18n.{ResourceBundle, ResourceUtils}
 import com.linearframework.samples.config.{Persistence, Resources}
 import com.linearframework.web._
 import com.linearframework.config._
@@ -18,6 +18,7 @@ object App {
       .staticFiles(Resources.htmlLocation, Resources.htmlPath)
       .register[ResourceBundle](Resources.messages)
       .register[Database](Persistence.database(config))
+      .secure(ResourceUtils.getClasspathResource("keystore.jks").getPath, "password", null, null) // todo: make this work from jar, don't require nulls
       .start()
   }
 

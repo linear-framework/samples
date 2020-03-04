@@ -39,4 +39,34 @@ object UserRepository extends Repository {
       .execute()
   }
 
+  /**
+   * Gets username for the given id
+   */
+  def findUsername(userId: Long)(implicit tx: Transaction = null): Option[String] = {
+    db.sql("""
+        SELECT username
+        FROM users
+        WHERE user_id = {userId}
+      """)
+      .params("userId" -> userId)
+      .returningRecord(_.getString("username"))
+      .execute()
+  }
+
+  /**
+   * Gets password and userId for the given username
+   */
+  def findPassword(username: String)(implicit tx: Transaction = null): Option[(Long, String)] = {
+    db.sql("""
+        SELECT user_id, password
+        FROM users
+        WHERE username = {username}
+      """)
+      .params("username" -> username)
+      .returningRecord { rs =>
+        rs.getLongOption("user_id").getOrElse(-1L) -> rs.getString("password")
+      }
+      .execute()
+  }
+
 }
