@@ -18,7 +18,7 @@ object App {
       .staticFiles(Resources.htmlLocation, Resources.htmlPath)
       .register[ResourceBundle](Resources.messages)
       .register[Database](Persistence.database(config))
-      .secure(ResourceUtils.getClasspathResource("keystore.jks").getPath, "password", null, null) // todo: make this work from jar, don't require nulls
+      .secure(ResourceUtils.getClasspathResource("keystore.jks").getPath, "password") // todo: make this work from jar
       .start()
   }
 
