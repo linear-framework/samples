@@ -3,6 +3,9 @@ package com.linearframework.samples.filter
 import com.linearframework.samples.repository.{LoginRepository, UserRepository}
 import com.linearframework.web._
 
+/**
+ * Attaches a login session to the request, if available
+ */
 object SessionFilter extends Filter {
 
   BEFORE { (request, _) =>
