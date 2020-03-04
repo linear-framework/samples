@@ -66,7 +66,7 @@ dependencies {
   implementation("org.apache.commons:commons-dbcp2:2.7.0")
   implementation("org.apache.commons:commons-lang3:3.9")
   implementation("org.mindrot:jbcrypt:0.4")
-  implementation("com.fasterxml.jackson.module:jackson-module-scala_2.13:2.10.2")
+  implementation("org.flywaydb:flyway-core:6.2.4")
 
   runtimeOnly("com.h2database:h2:1.4.200")
   runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
